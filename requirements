@@ -30,3 +30,5 @@ pandas
 
 # Environment
 python-dotenv
+
+pip install httpx faiss-cpu numpy langgraph langgraph-checkpoint-mongodb langchain-core sentence-transformers thefuzz python-Levenshtein pymongo celery redis streamlit pandas python-dotenv
