@@ -1,0 +1,32 @@
+# Web & HTTP
+httpx
+
+# Vector Search
+faiss-cpu
+numpy
+
+# LLM & Agent Framework
+langgraph
+langgraph-checkpoint-mongodb
+langchain-core
+
+# Embeddings
+sentence-transformers
+
+# Fuzzy Matching
+thefuzz
+python-Levenshtein
+
+# Database
+pymongo
+
+# Task Queue
+celery
+redis
+
+# Frontend
+streamlit
+pandas
+
+# Environment
+python-dotenv
