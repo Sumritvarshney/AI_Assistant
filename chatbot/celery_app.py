@@ -36,9 +36,9 @@ celery_app.conf.update(
 # --- EMAIL CONFIGURATION ---
 EMAIL_HOST     = os.getenv("EMAIL_HOST", "smtp.gmail.com")
 EMAIL_PORT     = int(os.getenv("EMAIL_PORT", 587))
-EMAIL_USER     = os.getenv("EMAIL_USER", "varshneysumrit@gmail.com")
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD", "ijlerxqifdufdpzn")
-EMAIL_FROM     = os.getenv("EMAIL_FROM", "Spog.ai Assistant <varshneysumrit@gmail.com>")
+EMAIL_USER     = os.getenv("EMAIL_USER")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+EMAIL_FROM     = os.getenv("EMAIL_FROM")
 
 
 def _build_email_html(response_text: str, user_name: str, query: str) -> str:
