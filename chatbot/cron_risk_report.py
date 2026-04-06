@@ -13,7 +13,7 @@ import smtplib
 from datetime import datetime, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from chatbot.agent2 import (
+from agent2 import (
     registry_loader,
     load_user_credentials,
     _authenticated_client,
