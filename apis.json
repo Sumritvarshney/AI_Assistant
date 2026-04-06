@@ -1,0 +1,318 @@
+{
+    "tickets": {
+      "description": "Fetch IT support tickets, tasks, issues, bug reports, incident logs. Use for queries about status, assignments, or blockers.",
+      "endpoint": "/incident/ticket",
+      "pagination": true,
+      "filter_param": "filters", 
+      "default_filters": {"Issue Type": ["63e22aec05dd11e5dfa6901b"]}, 
+      "filter_mapping": {
+        "status": ["status.name", "status_id.name"], 
+        "assignee": ["assignee.0.name", "assignee.name"],
+        "priority": ["priority.name"],
+        "id": ["issue_id"]
+      },
+      "display_fields": ["issue_id", "summary", "status"]
+    },
+    "users": {
+      "description": "Fetch system users, employees, tenants, project members, contact details, and roles.",
+      "endpoint": "/user-prefrences/all/users", 
+      "pagination": true,
+      "filter_param": "more_filter",
+      "default_filters": {
+        "user_provider": ["aws"]
+      },
+      "filter_mapping": {
+        "provider": ["user_provider", "provider"],
+        "role": ["user_title", "title", "user_type", "role", "job_title"],
+        "tenant": ["Tenant", "tenant_name"],
+        "project": ["project", "project_name"],
+        "name": ["full_name", "first_name", "username", "name"],
+        "email": ["email"],
+        "mobile": ["mobile", "phone", "contact"]
+      },
+      "display_fields": ["name", "email", "mobile"]
+    },
+    "services": {
+    "description": "Fetch IT services, assets, and domains. Filter by provider, type, id, or name.",
+    "endpoint": "/service/list",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {
+        "status": ["active"],
+        "category": ["domain"], 
+        "provider": ["constellix", "aws", "akamai"]
+    },
+    "filter_mapping": {
+        "name": ["name", "service_name", "alias"],
+        "id": ["id", "_id", "service_id"],
+        "type": ["service_type", "asset_type", "category"],
+        "provider": ["provider", "cloud_provider"]
+    },
+    "display_fields": ["name", "id", "type", "provider"]
+},
+"software_groups": {
+    "description": "Fetch software groups and inventory. Shows service counts, categories, and manufacturers.",
+    "endpoint": "/v2/software/group",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {},
+    "filter_mapping": {
+        "name": ["name", "software_name", "group_name", "title"],
+        "count": ["service_count", "count", "total"],
+        "id": ["id", "_id", "group_id"],
+        "category": ["category", "group_type", "type"],
+        "manufacturer": ["manufacturer", "vendor", "publisher", "brand"]
+    },
+    "display_fields": ["name", "service_count", "category", "manufacturer"]
+},
+"frameworks": {
+    "description": "Fetch compliance and security frameworks including control counts and status.",
+    "endpoint": "/framework/framework/list?ui_version=v2",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {},
+    "filter_mapping": {
+        "name": ["name", "title"],
+        "description": ["description"],
+        "id": ["_id", "id", "framework_id"],
+        "status": ["status"],
+        "controls": ["control_count", "controls"],
+        "requirements": ["requirement_count", "requirements"],
+        "enabled": ["enabled", "is_active"],
+        "type":["type"]
+    },
+    "display_fields": ["name", "status","type", "control_count", "requirement_count"]
+},
+"teams": {
+    "description": "Fetch team hierarchy, member counts, owners, access levels, and full list of member names and emails.",
+    "endpoint": "/teams/team",
+    "pagination": true,
+    "filter_param": "filters",
+    
+    "default_filters": {
+      "view": []
+    },
+    
+    "filter_mapping": {
+      "name": ["name"],
+      "id": ["_id"],
+      "owner": ["owner.name", "owner.email"],
+      "member": ["members"], 
+      "access": ["user_access"]
+    },
+    
+    "display_fields": ["name", "member_count", "owner.name", "members", "user_access"]
+  },
+  "business_catalog": {
+    "description": "Fetch Business service catalog items, applications, descriptions, auth methods, costs, and owners.",
+    "endpoint": "/service/catalog",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {},
+    "filter_mapping": {
+        "name":        ["name"],
+        "description": ["description"],
+        "status":      ["status"],
+        "auth":        ["auth_method"],
+        "owner":       ["user.name", "user.email"],
+        "id":          ["_id"],
+        "priority":    ["priority"],
+        "frequency":   ["frequency"],
+        "cost":        ["cost"]
+    },
+    "display_fields": ["name", "description", "status", "auth_method", "priority", "frequency", "cost", "user.name"]
+},
+  "vendors": {
+    "description": "Fetch vendor details including name, vendor type, CIN, status, and owner information.",
+    "endpoint": "/nclc/list",
+    "is_nclc": true,
+    "nclc_endpoint": "/vendor",
+    "pagination": true,
+    "filter_param": "filters",
+    
+    "default_filters": {},
+    
+    "filter_mapping": {
+      "name": ["name"],
+      "id": ["_id", "doc_id"],
+      "type": ["vendor_type"],
+      "status": ["status"],
+      "cin": ["vendor_cin"],
+      "owner": ["owner.name", "owner.email"]
+    },
+    
+    "display_fields": ["name", "vendor_type", "status", "owner.name", "vendor_cin"]
+  },
+  "questionnaires": {
+    "description": "Fetch questionnaires, assessment details, quiz types, status, and owner information.",
+    "endpoint": "/nclc/list",
+    "is_nclc": true,
+    "nclc_endpoint": "/questionnaire",
+    "pagination": true,
+    "filter_param": "filters",
+    
+    "default_filters": {},
+    
+    "filter_mapping": {
+      "name": ["name"],
+      "description": ["description"],
+      "type": ["quiz_type"],
+      "status": ["status"],
+      "owner": ["owner.name", "owner.email"],
+      "id": ["_id", "doc_id"]
+    },
+    
+    "display_fields": ["name", "description", "quiz_type", "status", "owner.name", "doc_id"]
+  },
+  "risks": {
+    "description": "Fetch risks, checks, and vulnerabilities. Filter by project, framework, status, owner, provider, etc.",
+    "endpoint": "/risk/test",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {
+      "check_state":["ready"]
+    },
+    "filter_mapping": {
+      "status": ["check_state"],
+      "project": ["project"],
+      "framework": ["framework"],
+      "owner": ["owner"],
+      "provider": ["provider"],
+      "check_id": ["check_id"],
+      "check_owner": ["check_owner"],
+      "check_type": ["check_type"],
+      "likelihood": ["likelihood"],
+      "search": ["search"]
+    },
+    "display_fields": ["check_id", "check_state", "project", "framework", "owner", "provider", "likelihood", "search"]
+  },
+  "risk_fail": {
+    "description": "Fetch assets that failed a specific risk check or test. Use when asked about failed assets for a check ID like CHK-137.",
+    "endpoint": "/risk/test/fail/pass/list",
+    "pagination": true,
+    "filter_param": "filters",
+    "top_level_params": ["check_status", "list_view", "test_id", "status"],
+    "array_filters": ["check_id"],
+    "default_filters": {
+        "check_status": false,
+        "list_view": "asset",
+        "check_state": ["ready"]
+    },
+    "filter_mapping": {
+        "test_id":  ["test_id"],
+        "check_id": ["test_id"]
+    },
+    "display_fields": ["name", "type", "provider", "check_status", "tenant", "description", "owner", "impact", "_id"]
+},
+"risk_pass": {
+    "description": "Fetch assets that passed a specific risk check or test. Use when asked about passed assets for a check ID like CHK-137.",
+    "endpoint": "/risk/test/fail/pass/list",
+    "pagination": true,
+    "filter_param": "filters",
+    "top_level_params": ["check_status", "list_view", "test_id", "status"],
+    "array_filters": ["check_id"],
+    "default_filters": {
+        "check_status": true,
+        "list_view": "asset",
+        "check_state": ["ready"]
+    },
+    "filter_mapping": {
+        "test_id":  ["test_id"],
+        "check_id": ["test_id"]
+    },
+    "display_fields": ["name", "type", "provider", "check_status", "tenant", "description", "owner", "impact", "_id"]
+},
+"checks": {
+    "description": "Fetch risk checks, controls, and compliance tests. Filter by category, owner, status, check type, or likelihood.",
+    "endpoint": "/risk/check",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {},
+    "extra_params": {
+        "sorting": {"sort_column": "likelihood", "sort_by": "desc"}
+    },
+    "filter_mapping": {
+        "id":         ["check_detail.check_id", "check_detail._id", "check_detail.display_id"],
+        "name":       ["check_detail.short_name"],
+        "status":     ["check_detail.status", "check_detail.check_state"],
+        "category":   ["check_detail.category"],
+        "type":       ["check_detail.check_type", "check_type"],
+        "owner":      ["check_detail.owner.name", "check_detail.owner.email"],
+        "likelihood": ["check_detail.likelihood"],
+        "enabled":    ["check_detail.enabled"]
+    },
+    "display_fields": ["id", "name","category","likelihood","status", "type", "owner"]
+},
+"vulnerabilities": {
+    "description": "Fetch vulnerabilities, CVEs, security weaknesses, and exploits. Filter by severity, provider, type, or title.",
+    "endpoint": "/v2/vulnerabilities",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {},
+    "extra_params": {
+        "fields": "title,provider,description,type,cve_ids,public_exploit,created_on,service_count,severity,summary",
+        "sort_column": "service_count",
+        "sort_by": "desc"
+    },
+    "filter_mapping": {
+        "id":             ["_id"],
+        "title":          ["title"],
+        "severity":       ["severity"],
+        "type":           ["type"],
+        "provider":       ["provider"],
+        "cve":            ["cve_ids"],
+        "public_exploit": ["public_exploit"],
+        "service_count":  ["service_count"],
+        "description":    ["description"]
+    },
+    "display_fields": ["title", "severity", "type", "provider", "service_count", "cve", "public_exploit"]
+},"vulnerability_programs": {
+    "description": "Fetch vulnerability programs, remediation campaigns, and vulnerability management workflows. Filter by name, type, status, or owner.",
+    "endpoint": "/v2/vulnerability/programs",
+    "pagination": true,
+    "filter_param": "filters",
+    "default_filters": {},
+    "extra_params": {},
+    "filter_mapping": {
+        "id":           ["_id"],
+        "name":         ["name"],
+        "description":  ["description"],
+        "type":         ["type"],
+        "status":       ["status"],
+        "owner":        ["created_by.name", "created_by.email"],
+        "asset_count":  ["asset_count"],
+        "vul_count":    ["vul_count"],
+        "action":       ["action"],
+        "trigger":      ["trigger"]
+    },
+    "display_fields": ["name", "description", "type", "status", "asset_count", "vul_count", "owner"]
+},
+"itasset_inventory": {
+  "description": "Fetch IT asset inventory, including asset type, manufacturer, serial number, tenant, and other details.",
+  "endpoint": "/itasset/inventory",
+  "pagination": true,
+  "filter_param": "filters",
+  "default_filters": {},
+  "filter_mapping": {
+    "state": ["State"],
+    "asset_type": ["asset_type"],
+    "tenant": ["tenant_id"],
+    "summary": ["summary"]
+  },
+  "display_fields": ["asset_type", "summary", "tenant_id", "catalog_id", "created_on", "updated_on"]
+},"risk_history": {
+    "description": "Fetch historical risk test data showing pass, fail, remediated and total counts over time for a specific risk or check ID.",
+    "endpoint": "/risk/test/history/data",
+    "pagination": true,
+    "filter_param": "filters",
+    "top_level_params": ["risk_id"],
+    "default_filters": {},
+    "filter_mapping": {
+        "check_id":     ["risk_id"],
+        "check_state": ["check_state"],
+        "status":      ["check_state"]
+    },
+    "display_fields": ["timestamp", "pass", "fail", "total", "remediated"]
+}
+}
+  
