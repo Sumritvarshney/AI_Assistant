@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Import the updated streaming function and user management functions
-from chatbot.agent2 import (
+from agent2 import (
     run_chat_stream, user_exists, save_user_credentials, 
     load_user_credentials, get_user_threads, delete_user_thread_by_id,
     get_user_threads_with_messages, create_user_thread,
